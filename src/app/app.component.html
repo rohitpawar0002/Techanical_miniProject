@@ -1,0 +1,258 @@
+  <div class="mainBox">
+  <div class="container">
+    <div class="arrangement" >
+      
+      <div class="col-xl-10">
+
+        <div class="headingText">
+        <h1 style="text-align : center; color:whitesmoke;">Student Registration Form</h1>
+      </div>
+        <form [formGroup]="registraction" (ngSubmit)="onSubmit1()">
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body">
+            <div class="row align-items-center pt-2">
+               <div class="col-md-3 ps-5">
+                <h6 class="mb-0">Name</h6>
+           </div>             
+            <div class="col-md-9 pe-5">
+                <input type="text" class="form-control form-control-lg" />        
+                   </div>
+               </div>                    
+            </div>
+
+            <hr class="mx-n0">
+ 
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Date Of Birth</h6>
+
+              </div>
+              <div class="col-md-9 pe-5 ">            
+
+                  <input type="date" id="yearPicker" class="form-control" min="1970-01-01" max="2030-12-31">
+                 </div>
+             
+            </div>
+
+            <hr class="mx-n0">
+            
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+            
+                <h6 class="mb-0">Registration Fees</h6>
+            
+              </div>
+              <div class="col-md-9 pe-5">
+            
+                <input type="number" formControlName="registractionFees"   [ngClass]="{
+                  'is-invalid': submitted && registraction.get('registractionFees')?.errors
+                }" class="form-control" rows="3">
+            
+                <div     *ngIf="
+                submitted ||
+                (registraction.get('registractionFees')?.invalid &&
+                  (registraction.get('registractionFees')?.dirty ||
+                    registraction.get('registractionFees')?.touched))">
+                  <div
+                  *ngIf="registraction.get('registractionFees')?.hasError('required')">
+                  <p class="text-danger">Registration Fees is required</p>
+              </div>
+                  </div>
+            
+              </div>
+            </div>
+
+            <hr class="mx-n0">
+            
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+            
+                <h6 class="mb-0">Exam Fees</h6>
+            
+              </div>
+              <div class="col-md-9 pe-5">
+            
+                <input type="number" formControlName="examFees" [ngClass]="{'is-invalid':submitted && registraction.get('examFees')?.errors}"  class="form-control" rows="3">
+                <div *ngIf="submitted || (registraction.get('examFees')?.invalid && (registraction.get('examFees')?.dirty || registraction.get('examFees')?.touched))">
+                  <div
+                  *ngIf="registraction.get('examFees')?.hasError('required')">
+                  <p class="text-danger">Exam Fees is required</p>
+              </div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="mx-n0">
+            
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+            
+                <h6 class="mb-0">Address</h6>
+            
+              </div>
+              <div class="col-md-9 pe-5">
+            
+                <textarea type="text" class="form-control" rows="3"></textarea>
+             </div>
+            </div>
+
+            <hr class="mx-n0">
+            
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+            
+                <h6 class="mb-0">Mobile Number</h6>
+            
+              </div>
+              <div class="col-md-9 pe-5">
+            
+                <input type="number" formControlName="contact" [ngClass]="{'is-invalid':submitted && registraction.get('contact')?.errors}"  class="form-control" rows="3">
+                <div *ngIf="submitted || (registraction.get('contact')?.invalid && (registraction.get('contact')?.dirty || registraction.get('contact')?.touched))">
+                  <div  *ngIf="
+                  submitted ||
+                  (registraction.get('contact')?.invalid &&
+                    (registraction.get('contact')?.dirty ||
+                      registraction.get('contact')?.touched))">
+                  <div
+                  *ngIf="registraction.get('contact')?.hasError('required')">
+                  <p class="text-danger">Mobile is required</p>
+                 </div>
+                  </div>
+                </div>
+                <div *ngIf="registraction.get('contact')?.hasError('pattern')">
+                <p class="text-danger">Enter valid mobile</p>
+              </div>
+              </div>
+            </div>
+
+            <hr class="mx-n0">
+            
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+            
+                <h6 class="mb-0">Gender</h6>
+            
+              </div>
+              <div class="col-md-9 pe-5">
+                <div class="d-flex flex-row">
+                  <input type="radio" id="html" name="fav_language" value="male">
+                  <label for="html" style="margin-top: 0.5rem;">Male</label>
+                  <input type="radio" id="html" name="fav_language" value="female">
+                  <label for="html" style="margin-top: 0.5rem;">Female</label><br>
+              </div>
+              </div>
+            </div>
+
+
+            <hr class="mx-n0">
+
+             <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Email address</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                <input type="email"  formControlName="email"  [ngClass]="{
+                  'is-invalid': submitted && registraction.get('email')?.errors}" class="form-control form-control-lg" placeholder="example@example.com" />
+                <div  *ngIf="
+                submitted ||
+                (registraction.get('email')?.invalid &&
+                  (registraction.get('email')?.dirty ||
+                    registraction.get('email')?.touched))">
+
+             <div
+             *ngIf="registraction.get('email')?.hasError('required')">
+              <p class="text-danger">Email is required</p>
+             </div>
+              </div>
+              <div *ngIf="registraction.get('email')?.hasError('email')">
+              <p class="text-danger"> Enter valid email</p> 
+              </div>
+
+             </div>
+           </div>
+
+
+            <hr class="mx-n0">
+
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">College Fees</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                <input type="number" formControlName="collegeFees" [ngClass]="{'is-invalid':submitted && registraction.get('collegeFees')?.errors}"    class="form-control" rows="3">
+                <div *ngIf="submitted || (registraction.get('collegeFees')?.invalid && (registraction.get('collegeFees')?.dirty || registraction.get('collegeFees')?.touched))">
+                  <div
+                  *ngIf="registraction.get('collegeFees')?.hasError('required')">
+                  <p class="text-danger">College Fees is required</p>
+              </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+            <hr class="mx-n0">
+
+             <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Total Fees</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                <div class="d-flex">               
+                <button class="btn btn-dark btn-sm" (click)="totalFeeDisplay()">Check</button>
+                <h3 style="margin-left: 1rem;">{{totalFee}}</h3>
+              </div>
+
+              
+              </div>
+            </div>
+
+            <hr class="mx-n0">
+ 
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Passing Year</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+               <input type="date" id="yearPicker" class="form-control" min="1970-01-01" max="2030-12-31">
+              </div>
+             
+              </div>
+            </div>
+
+            
+            <div class="d-flex">
+            <div class="btnSave">
+              <button type="submit" class="btn btn-primary btn-lg">Save</button>
+            </div>
+
+            <div class="btnDelete">
+              <button class="btn btn-dark btn-lg">Delete</button>
+            </div>
+          </div>
+          
+        
+      </form>
+
+      </div>
+    </div>
+    </div>
+
+  </div>
+    
+
