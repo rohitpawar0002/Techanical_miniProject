@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { FormBuilder,FormGroup, Validators } from '@angular/forms';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,34 +13,41 @@ export class AppComponent implements OnInit {
   submitted = false;
   totalFee:any;
   option:boolean=true;
+  http: any;
 
 
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder, private toster:ToastrService){}
 
 
 ngOnInit(): void {
   this.registraction=this.fb.group(
-    {contact:['',[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+    {
+    name:['',Validators.required],  
+    contact:['',[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
     email:['',[Validators.required,Validators.email]],
     registractionFees:['',Validators.required],
     collegeFees:['',Validators.required],
     examFees:['',Validators.required],
+    address:['',Validators.required],
+    passingYear:['',Validators.required],
+    dateBirth:['',Validators.required]
     
   }
   )
 
 }
 
-onSubmit1() {
+onSubmit() {
   this.submitted = true;
 
   if (this.registraction.invalid) {
     return;
   }
-
-  alert("Submitted Successfully!")
+  localStorage.setItem("token", JSON.stringify( this.registraction.value))
+  this.toster.success('Save data')
 }
 
+  
 get feesRegister(){
   return this.registraction.controls["registractionFees"]
 }
@@ -56,6 +63,14 @@ totalFeeDisplay(){
 
 
 }
+resetForm(){
+  this.registraction.reset();
+  localStorage.removeItem("token")
+  this.toster.warning('Form is reset')
+}
+
+
+
 }
 
 
